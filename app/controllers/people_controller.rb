@@ -31,6 +31,9 @@ class PeopleController < ApplicationController
         format.html { redirect_to @person, notice: 'Person was successfully created.' }
         format.json { render :show, status: :created, location: @person }
       else
+        Rails.logger.error "\n***********\n"
+        Rails.logger.error "\n#{@person.errors}\n"
+        Rails.logger.error "\n***********\n"
         format.html { render :new }
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
